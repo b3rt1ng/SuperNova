@@ -4,7 +4,4 @@
 SuperNova is a MITM attacking tool writen in python using [scapy](https://scapy.net/)
 Also, he's the big Brother of [NOVA](https://github.com/b3rt1ng/NOVA) ;)
 
-　　　　　　　　　　　　　　　　　　. 　　　˚　　　　　　　　　　　　　　    　　. 　 　　　　　. 　　　　　   　　　　　.　　　　　　　　　　　.　　　　　　　　　　  　　　* .　　　　　 　　　　　　　　　　　　　　. ✦ 　˚ . ✦ ✦　　　　　　　　　　　　　　　　　　　ﾟ　　　　　.　　　　　　　　　　　　　　　.  　　　　　　　　　　　　　　　. ✦ . ✦ 　　　˚  　　　　　　　　　　　　　.　　　☄ 　　　. ✦ 　　　　　　　　　　　　, .　　　　　　　　　　　　　.　　　ﾟ　  　　　.　
-
-
 #### Do not use this script for any illegal purposes.
