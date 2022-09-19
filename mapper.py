@@ -20,12 +20,13 @@ class mapper:
         self.netmap = {}
         self.netmap['you'] = get_if_addr(conf.iface)
         self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
+        self.fargmented = get_if_addr(conf.iface).split('.')
         self.TIMEOUT = 0.2
 
     def resolve_mac(self, ip):
         mac = getmacbyip(ip).upper()
         try:
-            vendor = manufacturers[mac[0:8]]
+            vendor = manufacturers[mac[0:8]][0]
         except:
             vendor = "unknown"
         return (mac,vendor)
@@ -37,7 +38,7 @@ class mapper:
 
     def start(self):
         for ip in range(0, 256):
-            Thread(target=self.ping, args=("192.168.1."+str(ip),)).start()
+            Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
             sleep(0.01) # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
 
 if __name__ == "__main__":
