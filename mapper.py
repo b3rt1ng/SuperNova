@@ -39,7 +39,7 @@ class mapper:
         self.netmap = {}
         self.netmap['you'] = get_if_addr(conf.iface)
         self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
-        self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown"))
+        self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) #building your own packet with scapy seems to revent you from pinging yourself so you'll automatically add youself this also be true if you try to ping your gateway
         self.fargmented = get_if_addr(conf.iface).split('.')
         self.TIMEOUT = 1
 
