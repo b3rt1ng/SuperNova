@@ -26,9 +26,11 @@ class mapper:
         return (mac,vendor)
 
     def ping(self,ip):
+        self.runningthread.append(True)
         reply = sr1(IP(dst=str(ip), ttl=20)/ICMP(), timeout=self.TIMEOUT, verbose=0)
         if (reply is not None):
             self.netmap[ip]=self.resolve_mac(ip)
+        self.runningthread.pop(0)
 
     def start(self):
         for ip in range(0, 256):
@@ -42,6 +44,7 @@ class mapper:
         self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) #building your own packet with scapy seems to revent you from pinging yourself so you'll automatically add youself this also be true if you try to ping your gateway
         self.fargmented = get_if_addr(conf.iface).split('.')
         self.TIMEOUT = 1
+        self.runningthread = []
 
 if __name__ == "__main__":
     map = mapper()
