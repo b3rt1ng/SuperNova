@@ -21,7 +21,7 @@ def showTable(ips,scandone=[]):
         new_line = f"{BRIGHT_YELLOW}| "
         forget+=1
         if forget>2:
-            new_line += f"{BRIGHT_GREEN}[{BRIGHT_MAGENTA}{forget-2}{BRIGHT_GREEN}] {(BRIGHT_RED if ips['you']==i else (BRIGHT_MAGENTA if ips['gateway']==i else BRIGHT_WHITE) )}{i}"+addSpaces(16-len(i))+f"{BRIGHT_YELLOW}|" #adds ip format
+            new_line += f"{BRIGHT_GREEN}[{BRIGHT_MAGENTA}{forget-2}{BRIGHT_GREEN}]{addSpaces(3-len(str(forget-2)))}{(BRIGHT_RED if ips['you']==i else (BRIGHT_MAGENTA if ips['gateway']==i else BRIGHT_WHITE) )}{i}"+addSpaces(15-len(i))+f"{BRIGHT_YELLOW}|" #adds ip format
             new_line += f" {BRIGHT_WHITE}{ips[i][0]} {BRIGHT_YELLOW}|" #adds mac adress
             new_line += f" {BRIGHT_WHITE}{ips[i][1]} {BRIGHT_YELLOW}"+addSpaces(21-len(ips[i][1]))+"|" #adds vendor
             print(new_line)
