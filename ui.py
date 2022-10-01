@@ -9,6 +9,9 @@ line = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}---------------------{BRIGHT_CYAN}+{BRIGHT
 row_names = f"{BRIGHT_YELLOW}|          {BRIGHT_GREEN}IP         {BRIGHT_YELLOW}|        {BRIGHT_GREEN}MAC        {BRIGHT_YELLOW}|        {BRIGHT_GREEN}VENDOR         {BRIGHT_YELLOW}|"
 end_table = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}-----------------------------------------------------------------{BRIGHT_CYAN}+"
 
+def uprint(text, color=BRIGHT_WHITE, char="+"):
+    sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+(BRIGHT_GREEN if char=="+" else BRIGHT_RED)+f"{char}{BRIGHT_BLUE}]{color} {text}")
+
 def clear():
     system('cls' if systemname == 'nt' else 'clear')
 
@@ -18,7 +21,14 @@ def addSpaces(n):
         r+=" "
     return r
 
-def showTable(ips,scandone=[]):
+def cut(n,text):
+    print(text)
+    while len(text)>=n:
+        print(text)
+        text=text[:-1]
+    return text
+
+def showTable(ips,scandone=[],sel=None):
     sys.stdout.write(line + '\n')
     sys.stdout.write(row_names + '\n')
     sys.stdout.write(line + '\n')
@@ -27,9 +37,9 @@ def showTable(ips,scandone=[]):
         new_line = f"{BRIGHT_YELLOW}| "
         forget+=1
         if forget>2:
-            new_line += f"{BRIGHT_GREEN}[{BRIGHT_MAGENTA}{forget-2}{BRIGHT_GREEN}]{addSpaces(3-len(str(forget-2)))}{(BRIGHT_RED if ips['you']==i else (BRIGHT_MAGENTA if ips['gateway']==i else BRIGHT_WHITE) )}{i}"+addSpaces(15-len(i))+f"{BRIGHT_YELLOW}|" #adds ip format
+            new_line += f"{BRIGHT_GREEN}["+(BRIGHT_CYAN if forget-2==sel else BRIGHT_MAGENTA)+f"{forget-2}{BRIGHT_GREEN}]{addSpaces(3-len(str(forget-2)))}{(BRIGHT_RED if ips['you']==i else (BRIGHT_MAGENTA if ips['gateway']==i else BRIGHT_WHITE) )}{i}"+addSpaces(15-len(i))+f"{BRIGHT_YELLOW}|" #adds ip format
             new_line += f" {BRIGHT_WHITE}{ips[i][0]} {BRIGHT_YELLOW}|" #adds mac adress
-            new_line += f" {BRIGHT_WHITE}{ips[i][1]} {BRIGHT_YELLOW}"+addSpaces(21-len(ips[i][1]))+"|" #adds vendor
+            new_line += f" {BRIGHT_WHITE}"+ips[i][1].ljust(22).replace("\n","")[:21]+f" {BRIGHT_YELLOW}|" #adds vendor
             print(new_line)
     sys.stdout.write(line + '\n')
     sys.stdout.write(f"{BRIGHT_YELLOW}| {BRIGHT_GREEN}SCAN{BRIGHT_WHITE}:")
@@ -48,6 +58,7 @@ def showHelp():
     sys.stdout.write('Commands:\n')
     sys.stdout.write(f"{BRIGHT_GREEN}Rescan{BRIGHT_WHITE}: {BRIGHT_YELLOW}Initialise a new network scan.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Exit{BRIGHT_WHITE}: {BRIGHT_YELLOW}Stop the script.\n")
+    sys.stdout.write(f"{BRIGHT_GREEN}Any numeric value{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will select a target for the MITM attack.\n")
     sys.stdout.write(BRIGHT_WHITE)
     input("press enter to continue.")
     clear()
