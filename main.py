@@ -1,27 +1,24 @@
 print("Importing modules")
 import mapper, ui
 from time import sleep
-from os import system
-from os import name as systemname
 
 map = mapper.mapper()
 map.start()
+ui.clear()
 
-def clear():
-    system('cls' if systemname == 'nt' else 'clear')
-
-clear()
 command = ""
 try:
     while True:
         if command == "rescan":
             map.start()
-            clear()
+            ui.clear()
         elif command == "exit":
             print("\nGood Bye.")
             exit()
+        elif command == "help":
+            ui.showHelp()
         ui.showTable(map.netmap,map.runningthread)
         command = ui.userinput()
-        clear()
+        ui.clear()
 except KeyboardInterrupt:
     print("\nGood Bye.")
