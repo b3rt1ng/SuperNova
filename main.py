@@ -1,4 +1,3 @@
-from curses.ascii import isalnum
 import ui
 ui.uprint("Importing modules\n")
 from os import geteuid
