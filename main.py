@@ -1,9 +1,9 @@
 import ui
 ui.uprint("Importing modules\n")
-from os import geteuid
-if geteuid() != 0:
-    ui.uprint("You need to run this script as a root user.\n", char="!")
-    exit()
+#from os import geteuid #not windows friendly
+#if geteuid() != 0:
+#    ui.uprint("You need to run this script as a root user.\n", char="!")
+#    exit()
 import mapper, relay
 
 map = mapper.mapper()
