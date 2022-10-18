@@ -8,7 +8,7 @@ from ui import uprint
 # https://gitlab.com/wireshark/wireshark/raw/master/manuf
 
 manufacturers = {}
-dump = [i.split('\t') for i in open("manuf", "r").readlines()[65:]]
+dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
 for i in dump:
     manufacturers[i[0]] = [(i[2] if len(i)>2 else i[1])]
 
