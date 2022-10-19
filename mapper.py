@@ -1,4 +1,4 @@
-from scapy.all import srp1, get_if_addr, conf, IP, ICMP, Ether
+from scapy.all import sr1, get_if_addr, conf, IP, ICMP, Ether
 from scapy.layers.l2 import getmacbyip
 from threading import Thread
 from time import sleep
@@ -28,7 +28,7 @@ class mapper:
 
     def ping(self,ip):
         self.runningthread.append(True)
-        reply = srp1(IP(dst=str(ip), ttl=20)/ICMP(), timeout=self.TIMEOUT, verbose=0)
+        reply = sr1(IP(dst=str(ip), ttl=20)/ICMP(), timeout=self.TIMEOUT, verbose=0)
         if (reply is not None):
             self.netmap[ip]=self.resolve_mac(ip)
         self.runningthread.pop(0)
