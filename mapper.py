@@ -35,6 +35,7 @@ class mapper:
 
     def start(self):
         uprint("Starting new scan...\n")
+        self.runningthread = []
         for ip in range(0, 256):
             Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
             sleep(0.015) # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
