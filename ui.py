@@ -58,6 +58,7 @@ def showHelp():
     sys.stdout.write('Commands:\n')
     sys.stdout.write(f"{BRIGHT_GREEN}Rescan{BRIGHT_WHITE}: {BRIGHT_YELLOW}Initialise a new network scan.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Exit{BRIGHT_WHITE}: {BRIGHT_YELLOW}Stop the script.\n")
+    sys.stdout.write(f"{BRIGHT_GREEN}mitm{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will attempt an mitm attack on your selected victim.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Any numeric value{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will select a target for the MITM attack.\n")
     sys.stdout.write(BRIGHT_WHITE)
     input("press enter to continue.")
