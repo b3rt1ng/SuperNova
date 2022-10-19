@@ -21,7 +21,7 @@ command = ""
 try:
     while True:
         if command == "mitm":
-            relay.IPForward_switch()
+            rel.start()
         elif command.isnumeric():
             ui.uprint("updating the informations.\n")
             rel.victim_ip, rel.victim_mac = map.get_info(int(command))

@@ -29,6 +29,7 @@ def cut(n,text):
     return text
 
 def showTable(ips,scandone=[],sel=None):
+    clear()
     sys.stdout.write(line + '\n')
     sys.stdout.write(row_names + '\n')
     sys.stdout.write(line + '\n')

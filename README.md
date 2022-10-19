@@ -21,6 +21,7 @@ SuperNova's structure is designed to be easy to implement so you can mess with t
 | ❌ | ARP poisoning |
 | ❌ | IP Forwarding** |
 | ❌ | Deauther |  
+dev note: the MITM part works for linux (according to serval testings and visible proofs using wireshark) and the ARP poisoning method works but the IP Forwarding ain't working on all platform yet, I prefer not to consider it as achieved yet. If you're on linux you can perform MITM attckes without any problems.
 
 *The network scan is proprely working, it's currently scanning assuming the network mask is set to 255.255.255.0 some network might use 255.255.0.0  
 Assuming you're using a 1 second timeout you would have to scan for 255^2 host wich would take an absurd amount of time. I need to figure out a way to efficiently preform that without loosing too much time.  
