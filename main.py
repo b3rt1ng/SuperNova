@@ -1,13 +1,13 @@
 import ui
-ui.uprint("Importing modules\n")
+ui.uprint("Importing modules")
 
 try:
     from os import geteuid #not windows friendly
     if geteuid() != 0:
-        ui.uprint("You need to run this script as a root user.\n", char="!")
+        ui.uprint("You need to run this script as a root user.", char="!")
         exit()
 except ImportError as e:
-    ui.uprint("geteuid not possible, windows solutions comming soon\n", char="!")
+    ui.uprint("geteuid not possible, windows solutions comming soon", char="!")
 
 import mapper, relay
 
@@ -20,24 +20,26 @@ ui.clear()
 command = ""
 try:
     while True:
-        if command == "mitm":
-            rel.start()
-        elif command.isnumeric():
-            ui.uprint("updating the informations.\n")
+        match command:
+            case "help":
+                ui.showHelp()
+            case "exit":
+                ui.uprint("Goodbye", char="*")
+                exit()
+            case "rescan":
+                map.start()
+            case "mitm":
+                rel.start()
+            
+
+        if command.isnumeric(): #ugly
+            ui.uprint("updating the informations.")
             rel.victim_ip, rel.victim_mac = map.get_info(int(command))
             rel.gateway_ip, rel.gateway_mac = map.get_gateway()
             selected = int(command)
-            ui.clear()
-        elif command == "rescan":
-            map.start()
-            ui.clear()
-        elif command == "exit":
-            print("\nGood Bye.")
-            exit()
-        elif command == "help":
-            ui.showHelp()
         ui.showTable(map.netmap,map.runningthread,selected)
         command = ui.userinput()
         ui.clear()
 except KeyboardInterrupt:
-    print("\nGood Bye.")
+    print()
+    ui.uprint("GoodBye.", char="*")

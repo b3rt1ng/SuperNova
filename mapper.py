@@ -31,15 +31,23 @@ class mapper:
         reply = sr1(IP(dst=str(ip), ttl=20)/ICMP(), timeout=self.TIMEOUT, verbose=0)
         if (reply is not None):
             self.netmap[ip]=self.resolve_mac(ip)
-        self.runningthread.pop(0)
+        try:
+            self.runningthread.pop(0)
+        except:
+            uprint("Error while removing thread from list (should not be important)", char="?")
 
     def start(self):
-        uprint("Starting new scan...\n")
+        uprint("Starting new scan...")
         self.runningthread = []
         for ip in range(0, 256):
             Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
-            sleep(0.015) # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
-    
+            sleep(0.015)
+            # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
+            # the issue is that the socket library cannot handle too much file opening
+            # https://stackoverflow.com/questions/2569620/socket-accept-error-24-to-many-open-files
+            # this stackoverflow post suggest increasing the number of file you can open but i won't
+            # do so if I can manage a "safer" way to fix the issue
+
     def get_info(self, index):
         count = -1
         for i in self.netmap:

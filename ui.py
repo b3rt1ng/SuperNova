@@ -8,9 +8,19 @@ BRIGHT_BLACK, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_BLUE, BRIGHT_MAGEN
 line = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}---------------------{BRIGHT_CYAN}+{BRIGHT_YELLOW}-------------------{BRIGHT_CYAN}+{BRIGHT_YELLOW}-----------------------{BRIGHT_CYAN}+"
 row_names = f"{BRIGHT_YELLOW}|          {BRIGHT_GREEN}IP         {BRIGHT_YELLOW}|        {BRIGHT_GREEN}MAC        {BRIGHT_YELLOW}|        {BRIGHT_GREEN}VENDOR         {BRIGHT_YELLOW}|"
 end_table = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}-----------------------------------------------------------------{BRIGHT_CYAN}+"
+chartable = {
+    "+" : BRIGHT_GREEN,
+    "-" : BRIGHT_RED,
+    "!" : BRIGHT_YELLOW,
+    "?" : BRIGHT_BLUE,
+    "*" : BRIGHT_MAGENTA,
+    "#" : BRIGHT_CYAN,
+    "@" : BRIGHT_WHITE
+}
 
-def uprint(text, color=BRIGHT_WHITE, char="+"):
-    sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+(BRIGHT_GREEN if char=="+" else BRIGHT_RED)+f"{char}{BRIGHT_BLUE}]{color} {text}")
+def uprint(text, color=BRIGHT_WHITE, char="+", end="\n"):
+    sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}{end}")
+    (input("Press enter to continue") if char=="!" else None)
 
 def clear():
     system('cls' if systemname == 'nt' else 'clear')
@@ -62,7 +72,7 @@ def showHelp():
     sys.stdout.write(f"{BRIGHT_GREEN}mitm{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will attempt an mitm attack on your selected victim.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Any numeric value{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will select a target for the MITM attack.\n")
     sys.stdout.write(BRIGHT_WHITE)
-    input("press enter to continue.")
+    input("Press enter to continue.")
     clear()
 
 

@@ -38,6 +38,9 @@ def IPForward_switch():
 
 
 def IPForward_status():
+    """
+    just for linux atm
+    """
     if platform.system() == "Linux":
         if "0" in open("/proc/sys/net/ipv4/ip_forward", 'r').read():
             return True #is off
@@ -54,7 +57,10 @@ class mitm:
         self.dump = []
 
     def start(self):
-        ui.uprint("Starting MITM attack\n")
+        if self.victim_ip == None or self.victim_mac == None or self.gateway_ip == None or self.gateway_mac == None:
+            ui.uprint("No target selected",char="!")
+            return
+        ui.uprint("Starting MITM attack")
         if IPForward_status():
             IPForward_switch()
         try:
@@ -64,6 +70,7 @@ class mitm:
                 sleep(0.1)
         except KeyboardInterrupt:
             IPForward_switch()
+            ui.clear()
 
 if __name__ == "__main__":
     IPForward_switch()
