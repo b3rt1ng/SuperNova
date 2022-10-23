@@ -1,8 +1,4 @@
-# 🌌 SuperNova 🌌
-
-## Work In Progress
-
-  
+# 🌌 SuperNova 🌌  
 
 SuperNova is an MITM attacking tool writen in python using [scapy](https://scapy.net/)
 
