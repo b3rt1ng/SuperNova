@@ -25,19 +25,10 @@ SuperNova's structure is designed to be easy to implement so you can mess with t
 
   
 
-| status | feature |
-
+| Command | Description |
 | --- | --- |
-
-| ✔️ | Precise network scan* |
-
-| ✔️ | Mac address resolver |
-
-| ✔️ | Vendor name resolver |
-
-| ✔️ | ARP poisoning / MITM Attack |
-
-| ❌ | IP Forwarding* |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
 
 
 *The Ip Forwarding method is pretty simple on Linux based OS since "ip_forward" file (located on "/proc/sys/net/ipv4/ip_forward" if you're wondering) just need to be set to 1 or 0.
