@@ -16,7 +16,7 @@
   <br>
 </h1>
 
-<h4 align="center">Performs a man in the middle with ease (and <a href="https://scapy.net/" target="_blank">Scapy</a>)</h4>
+<h4 align="center">Performs a man in the middle with ease (and <a href="https://github.com/secdev/scapy" target="_blank">Scapy</a>)</h4>
 
 
 <p align="center">
