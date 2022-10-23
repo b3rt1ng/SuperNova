@@ -23,12 +23,13 @@ SuperNova's structure is designed to be easy to implement so you can mess with t
 
 ### current dev status
 
-  
-
-| Command | Description |
+| status | feature |
 | --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
+| ✔️ | network scan |
+| ✔️ | Mac adress resolver |
+| ✔️ | Vendor name resolver |
+| ✔️ | ARP poisoning / MITM attack |
+| ❌ | IP Forwarding* |
 
 
 *The Ip Forwarding method is pretty simple on Linux based OS since "ip_forward" file (located on "/proc/sys/net/ipv4/ip_forward" if you're wondering) just need to be set to 1 or 0.
@@ -39,6 +40,9 @@ On windows, the Tcpip data located on the Windows registry keys. And I still nee
 dev note: the MITM part works for linux (according to several testings and visible proofs using wireshark) and the ARP poisoning method works but the IP Forwarding ain't working on all platform yet, I prefer not to consider it as achieved yet. If you're on linux you can perform MITM attacks without any problems.  
 
 ## Useful to know  
+
+Once you're performing your MITM attack, you can modify the code to process some packet, i've commented an example on the realy file, uncomment it and mess with it.  
+But i would recommend using wireshark.
 
 ### About MITM attacks  
 A Man In The Middle attack occurring on your personal network is actually a trick that exploit the MAC on the data link layer (check out the [OSI model](https://en.wikipedia.org/wiki/OSI_model) if you need a quick refresh).  
