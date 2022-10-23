@@ -1,6 +1,6 @@
 # 🌌 SuperNova 🌌  
 
-SuperNova is an MITM attacking tool writen in python using [scapy](https://scapy.net/)
+SuperNova is an MITM attacking tool writen in python using [Scapy](https://scapy.net/)
 
 Also, he's the big Brother of [NOVA](https://github.com/b3rt1ng/NOVA) ;)
 
@@ -37,7 +37,7 @@ dev note: the MITM part works for linux (according to several testings and visib
 
 ## Useful to know  
 
-Once you're performing your MITM attack, you can modify the code to process some packet as the following line shows (arround line 55 on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py)
+Once you're performing your MITM attack, you can modify the code to process some packet as the following line shows (arround line 55 on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py))
 ``` python
 pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
 ```
