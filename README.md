@@ -41,8 +41,11 @@ dev note: the MITM part works for linux (according to several testings and visib
 
 ## Useful to know  
 
-Once you're performing your MITM attack, you can modify the code to process some packet, i've commented an example on the realy file, uncomment it and mess with it.  
-But i would recommend using wireshark.
+Once you're performing your MITM attack, you can modify the code to process some packet as the following line shows (arround line 55 on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py)
+``` python
+pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
+```
+But I highly recommend using wireshark for the packet shelling since it's way more conveinient and it's a lot more powerful / complete
 
 ### About MITM attacks  
 A Man In The Middle attack occurring on your personal network is actually a trick that exploit the MAC on the data link layer (check out the [OSI model](https://en.wikipedia.org/wiki/OSI_model) if you need a quick refresh).  
