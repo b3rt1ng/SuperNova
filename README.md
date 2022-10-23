@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="https://badge.fury.io/py/scapy"><img src="https://badge.fury.io/py/scapy.svg" alt="PyPI version" height="18"></a>
-</p>
 
-[![PyPI version](https://badge.fury.io/py/scapy.svg)](https://badge.fury.io/py/scapy)
 # 🌌 SuperNova 🌌  
 
 SuperNova is an MITM attacking tool writen in python using [Scapy](https://scapy.net/)
