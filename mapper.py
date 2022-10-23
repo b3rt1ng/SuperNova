@@ -39,6 +39,10 @@ class mapper:
     def start(self):
         uprint("Starting new scan...")
         self.runningthread = []
+        self.netmap = {}
+        self.netmap['you'] = get_if_addr(conf.iface)
+        self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
+        self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) 
         for ip in range(0, 256):
             Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
             sleep(0.015)
