@@ -1,5 +1,16 @@
-
 <h1 align="center">
+  <img
+     src="https://img.shields.io/badge/Python%20Version-3.10-yellow"
+     alt="python version">
+  <img
+     src="https://img.shields.io/badge/Linux-%E2%9C%94-purple"
+     alt="working on linux">
+  <img
+     src="https://img.shields.io/badge/Windows-%F0%9F%A4%94-red"
+     alt="soon on windows">
+  <img
+     src="https://img.shields.io/badge/OSX-%E2%9D%8C-blue"
+     alt="not tested on osx">
   <br>
   🌌SuperNova🌌
   <br>
@@ -73,3 +84,10 @@ The ARP poisoning is done using the [ARP()](https://scapy.readthedocs.io/en/late
 A Man In The Middle attack occurring on your personal network is actually a trick that exploit the MAC on the data link layer (check out the [OSI model](https://en.wikipedia.org/wiki/OSI_model) if you need a quick refresh).  
 What our script is doing here is basically telling the router "hey i am the victim" and telling the victim "hey i am the router" therefore, you can act as a relay and see the packets sent from the victim to the router and vice versa assuming you've set your IP Forwarding on.
 
+## Useful to know  
+
+You can modify the code to process some packet as the following line shows (arround line 55 on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py))
+``` python
+pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
+```
+But I highly recommend using wireshark for the packet shelling since it's way more conveinient and it's a lot more powerful / complete
