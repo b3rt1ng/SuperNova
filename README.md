@@ -22,9 +22,9 @@
 * Network Scan - Scan on your network to find all the devices connected to it
   - Displays the IP, MAC, Vendor name and the hostname of the device
 * ARP poisoning - Perform an ARP poisoning attack on the network
-  1 Choose a devce to poison
-  2 Launch the attack
-  3 That's all ? Damn !
+  - Choose a devce to poison
+  - Launch the attack
+  - That's all ? Damn !
 
 ## How To Use
 
