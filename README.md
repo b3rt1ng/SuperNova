@@ -51,7 +51,7 @@ $ sudo python3 main.py
 
 ## Download manually
 
-Download scapy from [here](https://scapy.net/download/)
+Download scapy from [here](https://scapy.net/download/)  
 Download the manufacutrer database from [here](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
 ## How does it work
