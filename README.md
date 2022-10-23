@@ -4,7 +4,10 @@ SuperNova is an MITM attacking tool writen in python using [Scapy](https://scapy
 
 Also, he's the big Brother of [NOVA](https://github.com/b3rt1ng/NOVA) ;)
 
-  
+### Getting Started  
+
+Run the install.sh file (might need root on some systems) and you're up !  
+run the main.py file as a superuser and enjoy.  
 
 ### Why is it better than Nova ?
 
