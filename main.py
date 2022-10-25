@@ -1,13 +1,20 @@
 import ui
+from os import name as systemname
 ui.uprint("Importing modules")
 
-try:
-    from os import geteuid #not windows friendly
-    if geteuid() != 0:
+match systemname:
+    case "nt":
+        import ctypes
+        su_rights = (ctypes.windll.shell32.IsUserAnAdmin() != 0)
+    case "posix":
+        from os import geteuid
+        su_rights = (geteuid() != 0)
+    case _:
         ui.uprint("You need to run this script as a root user.", char="!")
-        exit()
-except ImportError as e:
-    ui.uprint("geteuid not possible, windows solutions comming soon", char="!")
+
+if su_rights == False:
+    ui.uprint("You need to run this script as a root user.", char="!")
+    exit()
 
 import mapper, relay
 
