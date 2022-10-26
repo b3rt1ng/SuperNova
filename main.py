@@ -8,9 +8,10 @@ match systemname:
         su_rights = (ctypes.windll.shell32.IsUserAnAdmin() != 0)
     case "posix":
         from os import geteuid
-        su_rights = (geteuid() != 0)
+        su_rights = (geteuid() == 0)
     case _:
-        ui.uprint("You need to run this script as a root user.", char="!")
+        su_rights = True
+        ui.uprint("Unknown OS, make sure you are running this script as a superuser", char="!")
 
 if su_rights == False:
     ui.uprint("You need to run this script as a root user.", char="!")

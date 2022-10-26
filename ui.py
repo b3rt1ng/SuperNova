@@ -18,8 +18,11 @@ chartable = {
     "@" : BRIGHT_WHITE
 }
 
-def uprint(text, color=BRIGHT_WHITE, char="+", end="\n"):
-    sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}{end}")
+def uprint(text, color=BRIGHT_WHITE, char="+", end="\n", same_line=False):
+    if same_line:
+        sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}\r\r\r")
+    else:
+        sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}{end}")
     (input("Press enter to continue") if char=="!" else None)
 
 def clear():

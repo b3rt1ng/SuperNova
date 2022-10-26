@@ -7,6 +7,7 @@ from ui import uprint
 # manuf needs to be present in the directory
 # https://gitlab.com/wireshark/wireshark/raw/master/manuf
 
+
 manufacturers = {}
 dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
 for i in dump:
@@ -44,6 +45,7 @@ class mapper:
         self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
         self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) 
         for ip in range(0, 256):
+            uprint(f"Started {int((ip/255)*100)}% of threads", same_line=True) #comment this line if you wanna gain time
             Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
             sleep(0.015)
             # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
