@@ -1,2 +1,2 @@
 curl https://gitlab.com/wireshark/wireshark/raw/master/manuf > manuf
-pip install scapy
+python3 -m pip install scapy
