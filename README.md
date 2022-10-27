@@ -32,10 +32,10 @@
 
 * Network Scan - Scan on your network to find all the devices connected to it
   - Displays the IP, MAC, Vendor name and the hostname of the device
-* ARP poisoning - Perform an ARP poisoning attack on the network
+* ARP poisoning - Perform an ARP poisoning attack on the target and the router to put yourself in between
   - Choose a device to poison
   - Launch the attack
-  - That's all ? Damn !
+  - That's it !
 
 ## How To Use
 
