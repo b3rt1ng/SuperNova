@@ -4,14 +4,14 @@ from os import name as systemname
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
 BRIGHT_BLACK, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_BLUE, BRIGHT_MAGENTA, BRIGHT_CYAN, BRIGHT_WHITE = '\u001b[30;1m', '\u001b[31;1m', '\u001b[32;1m', '\u001b[33;1m', '\u001b[34;1m', '\u001b[35;1m', '\u001b[36;1m', '\u001b[37;1m'
-# bright colors might not work on any terminals
+# bright colors might not work on every terminals
 line = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}---------------------{BRIGHT_CYAN}+{BRIGHT_YELLOW}-------------------{BRIGHT_CYAN}+{BRIGHT_YELLOW}-----------------------{BRIGHT_CYAN}+"
 row_names = f"{BRIGHT_YELLOW}|          {BRIGHT_GREEN}IP         {BRIGHT_YELLOW}|        {BRIGHT_GREEN}MAC        {BRIGHT_YELLOW}|        {BRIGHT_GREEN}VENDOR         {BRIGHT_YELLOW}|"
 end_table = f"{BRIGHT_CYAN}+{BRIGHT_YELLOW}-----------------------------------------------------------------{BRIGHT_CYAN}+"
 chartable = {
     "+" : BRIGHT_GREEN,
-    "-" : BRIGHT_RED,
-    "!" : BRIGHT_YELLOW,
+    "!" : BRIGHT_RED,
+    "-" : BRIGHT_YELLOW,
     "?" : BRIGHT_BLUE,
     "*" : BRIGHT_MAGENTA,
     "#" : BRIGHT_CYAN,
@@ -20,7 +20,7 @@ chartable = {
 
 def uprint(text, color=BRIGHT_WHITE, char="+", end="\n", same_line=False):
     if same_line:
-        sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}\r\r\r")
+        sys.stdout.write(f"\r{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}")
     else:
         sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}{end}")
     (input("Press enter to continue") if char=="!" else None)

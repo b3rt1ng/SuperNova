@@ -40,11 +40,17 @@ try:
                 rel.start()
             
 
-        if command.isnumeric(): #ugly
+        if command.isnumeric():
             ui.uprint("updating the informations.")
-            rel.victim_ip, rel.victim_mac = map.get_info(int(command))
-            rel.gateway_ip, rel.gateway_mac = map.get_gateway()
-            selected = int(command)
+            index = int(command)
+            if map.isvalid(index):
+                rel.victim_ip, rel.victim_mac = map.get_info(int(command))
+                rel.gateway_ip, rel.gateway_mac = map.get_gateway()
+                selected = int(command)
+            else:
+                ui.uprint("you are trying to select an invalid index", char="!")
+
+
         ui.showTable(map.netmap,map.runningthread,selected)
         command = ui.userinput()
         ui.clear()

@@ -3,6 +3,8 @@ from scapy.layers.l2 import getmacbyip
 from threading import Thread
 from time import sleep
 from ui import uprint
+import logging
+logging.getLogger("scapy.runtime").setLevel(40)
 
 # manuf needs to be present in the directory
 # https://gitlab.com/wireshark/wireshark/raw/master/manuf
@@ -16,7 +18,7 @@ for i in dump:
 class mapper:
     """
     class meant to scan for hosts with the ICMP protocol, resolve their mac adress and vendors
-    the timeout is set to 0.2 but you might need to scale it up depending on how good the network is
+    the timeout is set to 1 but you might need to scale it up depending on how good the network is
     """
 
     def resolve_mac(self, ip):
@@ -63,6 +65,11 @@ class mapper:
 
     def get_gateway(self):
         return self.netmap["gateway"],self.netmap[self.netmap["gateway"]][0]
+
+    def isvalid(self, int_value):
+        if 0<int_value<len(self.netmap)-1:
+            return True
+        return False
 
     def __init__(self):
         self.netmap = {}
