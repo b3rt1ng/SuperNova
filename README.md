@@ -6,10 +6,10 @@
      src="https://img.shields.io/badge/Linux-%E2%9C%94-purple"
      alt="working on linux">
   <img
-     src="https://img.shields.io/badge/Windows-%F0%9F%A4%94-red"
-     alt="soon on windows">
+     src="https://img.shields.io/badge/Windows-%E2%9C%94-red"
+     alt="working on windows">
   <img
-     src="https://img.shields.io/badge/OSX-%E2%9D%8C-blue"
+     src="https://img.shields.io/badge/OSX-maybe%20one%20day,%20who%20knows-blue"
      alt="not tested on osx">
   <br>
   🌌SuperNova🌌
