@@ -11,7 +11,12 @@ logging.getLogger("scapy.runtime").setLevel(40)
 
 
 manufacturers = {}
-dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
+try:
+    dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
+except FileNotFoundError:
+    uprint("manuf file not found, please run the install file of download it on https://gitlab.com/wireshark/wireshark/raw/master/manuf", char="-")
+    exit()
+
 for i in dump:
     manufacturers[i[0]] = [(i[2] if len(i)>2 else i[1])]
 
