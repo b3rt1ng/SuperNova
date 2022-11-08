@@ -26,7 +26,7 @@
   <a href="#how-does-it-work">How does it work</a>
 </p>
 
-<!-- ![screenshot](http://thing.gif) -->
+![screenshot](https://i.imgur.com/gVoBKLC.png)
 
 ## Key Features
 
