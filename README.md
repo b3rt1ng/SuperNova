@@ -53,7 +53,7 @@ $ chmod +x install.sh
 $ ./install.sh
 
 # Run the app with SU rights
-$ sudo python3 main.py
+$ sudo python3 supernova.py
 ```
 
 > **Note**
