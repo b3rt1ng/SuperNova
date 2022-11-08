@@ -23,10 +23,9 @@
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#download-manually">Download manually</a> •
-  <a href="#how-does-it-work">How does it work</a>
-  ![screenshot](https://i.imgur.com/gVoBKLC.png)
+  <a href="#how-does-it-work">How does it work</a><br>
+  <img src="https://i.imgur.com/gVoBKLC.png" alt="Screenshot of the main UI">
 </p>
-
 
 ## Key Features
 
