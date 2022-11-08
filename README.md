@@ -24,9 +24,9 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#download-manually">Download manually</a> •
   <a href="#how-does-it-work">How does it work</a>
+  ![screenshot](https://i.imgur.com/gVoBKLC.png)
 </p>
 
-![screenshot](https://i.imgur.com/gVoBKLC.png)
 
 ## Key Features
 
