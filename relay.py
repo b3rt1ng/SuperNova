@@ -1,6 +1,10 @@
 from scapy.all import ARP, send, sniff
-import ui, platform
+import ui, platform, subprocess
 from time import sleep
+
+
+windows_execute_ip_forward_check = "Get-NetIPInterface | select InterfaceAlias,AddressFamily,Forwarding | findstr Wi-Fi" #gets ipv4 and/or ipv6 forwarding status
+windows_execute_ip_forward_switch = "Set-NetIPInterface -InterfaceAlias Wi-Fi -Forwarding Enabled" #enables ipv4 and/or ipv6 forwarding
 
 def IPForward_switch():
     if platform.system() == "Linux":
@@ -17,19 +21,28 @@ def IPForward_switch():
             f.write("0")
             f.close()
     elif platform.system() == "Windows":
-        ui.uprint("Windows solutions comming soon",char="!")
+        if "Enabled" in subprocess.Popen(["powershell", windows_execute_ip_forward_check], stdout=subprocess.PIPE, shell=True).communicate()[0].decode("utf-8"):
+            ui.uprint("Disabling ip forwarding for windows")
+            subprocess.Popen(["powershell", windows_execute_ip_forward_switch.replace("Enabled", "Disabled")], stdout=subprocess.PIPE, shell=True)
+        else:
+            ui.uprint("Enabling ip forwarding for windows")
+            subprocess.Popen(["powershell", windows_execute_ip_forward_switch], stdout=subprocess.PIPE, shell=True)
     elif platform.system() == "Darwin":
         ui.uprint("OSX solutions comming soon",char="!")
 
 
 def IPForward_status():
     """
-    just for linux atm
+    just for linux and windows atm
     """
     if platform.system() == "Linux":
         if "0" in open("/proc/sys/net/ipv4/ip_forward", 'r').read():
             return True #is off
         return False #is on
+    elif platform.system() == "Windows":
+        if "Enabled" in subprocess.Popen(["powershell", windows_execute_ip_forward_check], stdout=subprocess.PIPE, shell=True).communicate()[0].decode("utf-8"):
+            return False
+        return True
     return None #something came wrong
 
 class mitm:
@@ -75,6 +88,6 @@ class mitm:
 
 if __name__ == "__main__":
     """
-    If anything goes wrong and you need to switch your ip forwarding status just run this file.
+    If anything goes wrong and you need to check your ip forwarding status just run this file.
     """
-    IPForward_switch()
+    print("Current ip forwarding status: ", ("off" if IPForward_status() else "on"))
