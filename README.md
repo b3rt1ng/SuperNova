@@ -56,7 +56,7 @@ $ sudo python3 supernova.py
 ```
 
 > **Note**
-> The install file might not need the execution rights, but the mains script does.
+> The install file might not need the execution rights, but the main script does.
 
 
 ## Download manually
