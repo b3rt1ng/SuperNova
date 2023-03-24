@@ -69,7 +69,7 @@ Download the manufacutrer database from [here](https://gitlab.com/wireshark/wire
 #### Network scanning
 
 The script will find out what your local IP is and then perform a ping sweep for every IP in the range of your local IP from 0 to 255.  
-Scanning the network is done like xxx.xxx.xxx.0-255 but it's also possible to scan like xxx.xxx.0-255.0-255 but the time spent scanning would be much longer.
+Scanning the network is done like xxx.xxx.xxx.0-255.
 
 #### MAC address resolver
 
