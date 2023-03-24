@@ -81,7 +81,7 @@ The ARP poisoning is done using the [ARP()](https://scapy.readthedocs.io/en/late
 
 #### More about the MITM attacks  
 A Man In The Middle attack occurring on your personal network is actually a trick that exploit the MAC on the data link layer (check out the [OSI model](https://en.wikipedia.org/wiki/OSI_model) if you need a quick refresh).  
-What our script is doing here is basically telling the router "hey i am the victim" and telling the victim "hey i am the router" therefore, you can act as a relay and see the packets sent from the victim to the router and vice versa assuming you've set your IP Forwarding on.
+What our script is doing here is basically telling the router "hey i am the victim" and telling the victim "hey i am the router" therefore, you can act as a relay and see the packets sent from the victim to the router and vice versa assuming the script successfully managed to enable IP Forwarding or you manually set it on.
 
 ## Useful to know  
 
