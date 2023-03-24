@@ -89,4 +89,4 @@ You can modify the code to process some packet as the following line shows (arro
 ``` python
 pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
 ```
-But I highly recommend using wireshark for the packet shelling since it's way more conveinient and it's a lot more powerful / complete
+But I highly recommend using wireshark for the packet shelling since it's way more convenient and it's a lot more powerful / complete
