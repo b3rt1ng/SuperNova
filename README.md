@@ -85,7 +85,7 @@ What our script is doing here is basically telling the router "hey i am the vict
 
 ## Useful to know  
 
-You can modify the code to process some packet as the following line shows (arround line 55 on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py))
+You can modify the code to process some packet as the following line shows (on [relay.py](https://github.com/b3rt1ng/SuperNova/edit/main/relay.py))
 ``` python
 pkts = sniff(prn=lambda x:x.sprintf("{IP:%IP.src% -> %IP.dst%}"), filter=f"ip host {self.victim_ip} and not arp")
 ```
