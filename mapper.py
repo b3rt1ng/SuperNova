@@ -17,8 +17,11 @@ except FileNotFoundError:
     uprint("manuf file not found, please run the install file of download it on https://gitlab.com/wireshark/wireshark/raw/master/manuf", char="-")
     exit()
 
-for i in dump:
-    manufacturers[i[0]] = [(i[2] if len(i)>2 else i[1])]
+try:
+    for i in dump:
+        manufacturers[i[0]] = [(i[2] if len(i)>2 else i[1])]
+except:
+    pass
 
 class mapper:
     """
