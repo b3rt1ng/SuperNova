@@ -7,14 +7,14 @@ import logging
 logging.getLogger("scapy.runtime").setLevel(40)
 
 # manuf needs to be present in the directory
-# https://gitlab.com/wireshark/wireshark/raw/master/manuf
+# https://raw.githubusercontent.com/boundary/wireshark/master/manuf
 
 
 manufacturers = {}
 try:
     dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
 except FileNotFoundError:
-    uprint("manuf file not found, please run the install file of download it on https://gitlab.com/wireshark/wireshark/raw/master/manuf", char="-")
+    uprint("manuf file not found, please run the install file of download it on https://raw.githubusercontent.com/boundary/wireshark/master/manuf", char="-")
     exit()
 
 try:
