@@ -1,3 +1,4 @@
 manuf
 test.py
+*.txt
 __pycache__/

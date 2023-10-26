@@ -69,7 +69,7 @@ class mitm:
                 # uncommenting the above line will make the program sniff the packets and print them to the screen.
                 # it could be useful for debugging purposes or to program a little bit of extra functionalities
                 # but I highly recommend using wireshark for the packet shelling since it's way more convenient and it's a lot more powerful / complete
-                sleep(0.5)
+                sleep(1.5)
 
         except KeyboardInterrupt:
             ui.uprint("Stopping MITM attack")
