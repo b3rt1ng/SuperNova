@@ -1,2 +1,2 @@
-curl https://raw.githubusercontent.com/boundary/wireshark/master/manuf -o manuf
+curl https://standards-oui.ieee.org/oui/oui.txt > oui.txt
 python3 -m pip install scapy

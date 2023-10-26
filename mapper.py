@@ -3,25 +3,11 @@ from scapy.layers.l2 import getmacbyip
 from threading import Thread
 from time import sleep
 from ui import uprint
-import logging
+import logging, resolver
 logging.getLogger("scapy.runtime").setLevel(40)
 
 # manuf needs to be present in the directory
 # https://raw.githubusercontent.com/boundary/wireshark/master/manuf
-
-
-manufacturers = {}
-try:
-    dump = [i.split('\t') for i in open("manuf", "r", encoding='utf-8').readlines()[65:]]
-except FileNotFoundError:
-    uprint("manuf file not found, please run the install file of download it on https://raw.githubusercontent.com/boundary/wireshark/master/manuf", char="-")
-    exit()
-
-try:
-    for i in dump:
-        manufacturers[i[0]] = [(i[2] if len(i)>2 else i[1])]
-except:
-    pass
 
 class mapper:
     """
@@ -29,11 +15,15 @@ class mapper:
     the timeout is set to 1 but you might need to scale it up depending on how good the network is
     """
 
-    def resolve_mac(self, ip):
-        mac = getmacbyip(ip).upper()
+    def resolve_mac(self, ip, with_mac=False):
+        if with_mac:
+            mac = ip
+        else:
+            mac = getmacbyip(ip).upper()
+
         try:
-            vendor = manufacturers[mac[0:8]][0]
-        except:
+            vendor = self.resolver.get_vendor(mac)
+        except Exception as e:
             vendor = "unknown"
         return (mac,vendor)
 
@@ -49,11 +39,6 @@ class mapper:
 
     def start(self):
         uprint("Starting new scan...")
-        self.runningthread = []
-        self.netmap = {}
-        self.netmap['you'] = get_if_addr(conf.iface)
-        self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
-        self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) 
         for ip in range(0, 256):
             uprint(f"Started {int((ip/255)*100)}% of threads", same_line=True) #comment this line if you wanna gain time
             Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
@@ -80,10 +65,11 @@ class mapper:
         return False
 
     def __init__(self):
+        self.resolver = resolver.vendor_resolver()
         self.netmap = {}
         self.netmap['you'] = get_if_addr(conf.iface)
         self.netmap['gateway'] = conf.route.route("0.0.0.0")[2]
-        self.netmap[get_if_addr(conf.iface)] = (Ether().src.upper(),(manufacturers[Ether().src.upper()[0:8]][0] if (Ether().src.upper()[0:8] in manufacturers) else "unknown")) #building your own packet with scapy seems to revent you from pinging yourself so you'll automatically add youself this also be true if you try to ping your gateway
+        self.netmap[get_if_addr(conf.iface)] = (self.resolve_mac(Ether().src.upper(), with_mac=True)) #building your own packet with scapy seems to revent you from pinging yourself so you'll automatically add youself this also be true if you try to ping your gateway
         self.fargmented = get_if_addr(conf.iface).split('.')
         self.TIMEOUT = 2
         self.runningthread = []
@@ -91,6 +77,6 @@ class mapper:
 if __name__ == "__main__":
     map = mapper()
     map.start()
-    print(map.netmap)
+    print(map.netmap)   
 
 
