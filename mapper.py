@@ -37,17 +37,39 @@ class mapper:
         except:
             uprint("Error while removing thread from list (should not be important)", char="?")
 
-    def start(self):
+    def start(self, large = False, sleep_time = 0.015):
         uprint("Starting new scan...")
-        for ip in range(0, 256):
-            uprint(f"Started {int((ip/255)*100)}% of threads", same_line=True) #comment this line if you wanna gain time
-            Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
-            sleep(0.015)
-            # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
-            # the issue is that the socket library cannot handle too much file opening
-            # https://stackoverflow.com/questions/2569620/socket-accept-error-24-to-many-open-files
-            # this stackoverflow post suggest increasing the number of file you can open but i won't
-            # do so if I can manage a "safer" way to fix the issue
+        if large:
+            """
+                implementing a scan that will be more specific to a network trunk
+            """
+            try:
+                uprint("Minimal integer: ", same_line=True, char="?")
+                minimal = int(input())
+                uprint("Maximal integer: ", same_line=True, char="?")
+                maximal = int(input())
+                if minimal>maximal:
+                    uprint("Minimal integer cannot be greater than maximal integer", char="!")
+                    return
+                for ip in range(minimal, maximal):
+                    for ip2 in range(0, 256):
+                        uprint(f"Started {int(((ip-minimal)+((ip2/256)*(maximal-minimal)))*100)}% of threads", same_line=True)
+                        Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{ip}.{ip2}",)).start()
+                        sleep(sleep_time)
+            except KeyboardInterrupt:
+                uprint("Aborting scan")
+                sleep(2)
+                return
+        else:
+            for ip in range(0, 256):
+                uprint(f"Started {int((ip/255)*100)}% of threads", same_line=True) #comment this line if you wanna gain time
+                Thread(target=self.ping, args=(f"{self.fargmented[0]}.{self.fargmented[1]}.{self.fargmented[2]}.{ip}",)).start()
+                sleep(sleep_time)
+                # Scapy doesn't seems to handle too much requests so I added a timeout to keep it as accurate as possible. I'll speed up the process later
+                # the issue is that the socket library cannot handle too much file opening
+                # https://stackoverflow.com/questions/2569620/socket-accept-error-24-to-many-open-files
+                # this stackoverflow post suggest increasing the number of file you can open but i won't
+                # do so if I can manage a "safer" way to fix the issue
 
     def get_info(self, index):
         count = -1

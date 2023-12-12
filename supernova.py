@@ -36,6 +36,8 @@ try:
                 exit()
             case "rescan":
                 map.start()
+            case "large scan":
+                map.start(large=True)
             case "mitm":
                 rel.start()
             
@@ -52,7 +54,7 @@ try:
 
 
         ui.showTable(map.netmap,map.runningthread,selected)
-        command = ui.userinput()
+        command = ui.userinput().lower()
         ui.clear()
 except KeyboardInterrupt:
     print()

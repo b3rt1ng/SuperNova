@@ -18,14 +18,14 @@ chartable = {
     "@" : BRIGHT_WHITE
 }
 
-def uprint(text, color=BRIGHT_WHITE, char="+", end="\n", same_line=False):
+def uprint(text, color=BRIGHT_WHITE, char="+", end="\n", same_line=False) -> None:
     if same_line:
         sys.stdout.write(f"\r{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}")
     else:
         sys.stdout.write(f"{BRIGHT_BLUE}[{BRIGHT_GREEN}"+chartable[char]+f"{char}{BRIGHT_BLUE}]{color} {text}{end}")
     (input("Press enter to continue") if char=="!" else None)
 
-def clear():
+def clear() -> None:
     system('cls' if systemname == 'nt' else 'clear')
 
 def addSpaces(n):
@@ -41,7 +41,7 @@ def cut(n,text):
         text=text[:-1]
     return text
 
-def showTable(ips,scandone=[],sel=None):
+def showTable(ips,scandone=[],sel=None) -> None:
     clear()
     sys.stdout.write(line + '\n')
     sys.stdout.write(row_names + '\n')
@@ -64,13 +64,14 @@ def showTable(ips,scandone=[],sel=None):
     sys.stdout.write(f"{BRIGHT_YELLOW}| {BRIGHT_MAGENTA}MAGENTA{BRIGHT_WHITE}: Your gateway                                           {BRIGHT_YELLOW}|" + '\n')
     sys.stdout.write(end_table + '\n')
 
-def userinput():
+def userinput() -> str:
     sys.stdout.write(f"{BRIGHT_YELLOW}> {BRIGHT_WHITE}")
     return input()
 
-def showHelp():
+def showHelp() -> None:
     sys.stdout.write('Commands:\n')
     sys.stdout.write(f"{BRIGHT_GREEN}Rescan{BRIGHT_WHITE}: {BRIGHT_YELLOW}Initialise a new network scan.\n")
+    sys.stdout.write(f"{BRIGHT_GREEN}Large scan{BRIGHT_WHITE}: {BRIGHT_YELLOW}Initialise a new network scan with a netmask of 255.255.n.0n n being the a range of your choice.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Exit{BRIGHT_WHITE}: {BRIGHT_YELLOW}Stop the script.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}mitm{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will attempt an mitm attack on your selected victim.\n")
     sys.stdout.write(f"{BRIGHT_GREEN}Any numeric value{BRIGHT_WHITE}: {BRIGHT_YELLOW}Will select a target for the MITM attack.\n")
