@@ -62,7 +62,7 @@ $ sudo python3 supernova.py
 ## Download manually
 
 Download scapy from [here](https://scapy.net/download/)  
-Download the manufacutrer database from [here](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
+Download the manufacutrer database from [here](https://www.wireshark.org/download/automated/data/manuf)
 
 ## How does it work
 
